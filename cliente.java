@@ -6,23 +6,24 @@ import java.awt.event.*;
 
 public class cliente {
     public static void main(String[] args) throws Exception {
+         // Crear ventana principal interfaz gráfica con Jframe
         JFrame frame = new JFrame("Calculadora Cliente");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 300);
         frame.setLayout(new BorderLayout());
 
-       
-        JTextField inputField = new JTextField();
+       // Crear el campo de texto para ingresar operaciones y el área para mostrar resultados
+        JTextField inputField = new JTextField(); // Campo para ingresar la operación
         JTextArea resultArea = new JTextArea(8, 30);
         resultArea.setEditable(false);
         resultArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
         JButton sendButton = new JButton("Enviar");
-        sendButton.setPreferredSize(new Dimension(100, 40));
+        sendButton.setPreferredSize(new Dimension(100, 40)); 
 
       
         JPanel inputPanel = new JPanel(new BorderLayout(10, 10));
         inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        inputPanel.add(new JLabel("Ingresa la operación (ej. 3*4):"), BorderLayout.NORTH);
+        inputPanel.add(new JLabel("Ingresa la operación (ejemplo 3*4):"), BorderLayout.NORTH);
         inputPanel.add(inputField, BorderLayout.CENTER);
         inputPanel.add(sendButton, BorderLayout.EAST);
 
@@ -32,7 +33,7 @@ public class cliente {
 
         frame.setVisible(true);
 
-        
+         // Se Crea la conexión de socket con sevidor localhost y el puerto
         Socket clientSocket = new Socket("127.0.0.1", 5000);
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
